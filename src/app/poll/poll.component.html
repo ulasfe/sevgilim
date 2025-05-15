@@ -1,0 +1,62 @@
+<div class="flex flex-wrap justify-center gap-6 mt-10 bg-white/30 backdrop-blur-md p-4 rounded-2xl shadow-lg">
+  <h2 class="text-2xl font-bold mb-4">Mini Anket</h2>
+
+  <form (ngSubmit)="submitAnswers()">
+    <div *ngFor="let q of questions; let i = index" class="mb-6">
+      <p class="font-semibold mb-2">{{ q.text }}</p>
+      <div *ngFor="let opt of q.options">
+        <label class="flex items-center gap-2 mb-1">
+          <input 
+            type="radio"
+            name="q{{i}}"
+            [value]="opt"
+            [(ngModel)]="q.answer"
+            [ngModelOptions]="{ standalone: true }"
+            [disabled]="submitted"
+          />
+          {{ opt }}
+        </label>
+      </div>
+
+      <!-- Doğruluk durumu -->
+      <div *ngIf="submitted" class="mt-1 text-sm">
+        <span 
+          [ngClass]="q.isCorrect ? 'text-green-600' : 'text-red-500'"
+          class="font-semibold"
+        >
+          {{ q.isCorrect ? 'Doğru' : 'Yanlış' }}
+        </span>
+      </div>
+    </div>
+
+    <button 
+      type="submit" 
+      class="bg-red-700 hover:bg-red-600 text-black py-2 px-4 rounded-2xl"
+      *ngIf="!submitted"
+    >
+      Gönder
+    </button>
+  </form>
+
+  <!-- Sonuçlar -->
+  <div *ngIf="submitted" class="mt-6 w-full">
+    <h3 class="text-xl font-bold mb-2">Cevapların:</h3>
+    <ul class="list-disc list-inside text-white">
+      <li *ngFor="let q of questions">
+        {{ q.text }} – <strong>{{ q.answer }}</strong>
+        <span 
+          [ngClass]="q.isCorrect ? 'text-green-400' : 'text-red-700'" 
+          class="ml-2"
+        >
+          ({{ q.isCorrect ? 'Doğru' : 'Yanlış' }})
+        </span>
+      </li>
+    </ul>
+
+    <div class="mt-4 text-lg font-bold text-white">
+      Toplam Doğru: 
+    <span class="text-green-400">{{ correctAnswerCount }}</span> / 
+    {{ questions.length }}
+    </div>
+  </div>
+</div>
