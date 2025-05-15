@@ -1,0 +1,56 @@
+
+<!-- Sabit Müzik Butonu -->
+<button (click)="toggleMusic()" 
+        class="fixed bottom-4 right-4 bg-red-600 text-white p-4 rounded-2xl shadow-xl hover:bg-red-700 transition-all duration-300 transform hover:scale-105 z-20">
+  <i [class.fas]="!isPlaying" [class.fa-play]="!isPlaying" [class.fa-pause]="isPlaying"></i> <!-- Play/Pause simgeleri -->
+</button>
+<app-header></app-header>
+
+<!-- HOŞGELDİN BÖLÜMÜ -->
+<section id="home" class="flex flex-wrap justify-center gap-6 mt-10 bg-white/5 backdrop-blur-md p-4 rounded-2xl shadow-lg">
+  <h1 class="italic text-5xl font-extrabold text-white mb-6">Hikayemiz</h1>
+  <p class="italic text-lg max-w-prose text-left text-white ">
+    Selam sevgilim, umarım bu küçük sürprizimi beğenmişsindir. Bu web sitesini tasarlamam biraz vakit aldı.
+    Sana beyaz bir yalan söylemiş olabilirim, aslında nöbet planlama projesi ile uğraşmıyordum. 
+    Sevgilim, yüzünden gülümseme hiç eksik olmasın ve bugünü (1 Haziran) her zaman bir tebessüm ile hatırla. 
+    Şimdi gelelim bu web sitesinin neler yaptığına, öncelikle eğer müzik dinlemek istersin sağ altta bulunan play butonuna basabilirsin.
+    Sonrasında da birlikte biriktirdiğimiz birsürü anılardan en beğendiklerimi görebilirsin. 
+    Eğer vaktim kalırsa her fotoğrafın altına anısını da yazmak istiyorum. Ayrıca mini bir de anketimiz var, bakalım kaç soruya aynı cevabı vereceğiz.
+    Böyle birşey yapma fikri nereden geldi diye soracak olursan da hemen cevap vereyim.
+    Sana her doğum gününde bakıp gülümseyebileceğin, ya da her için sıkıldığında biraz olsun içini rahatlatabilecek bir hediye vermekti amacım. 
+    Umarım başarılı olmuşumdur ve sen her bu siteyi açtığında ne sıkıntın varsa gider ya da her doğum gününde birlikte yeni anılar yeni yazılar yazarız buraya.
+  </p>
+</section>
+
+<!-- GALERİ BÖLÜMÜ -->
+<section id="gallery" class="flex flex-wrap justify-center gap-6 mt-10 bg-white/5 backdrop-blur-md p-4 rounded-2xl shadow-lg">
+  <h2 class="text-3xl font-bold text-white text-center mb-8">Galeri</h2>
+  <div class="flex flex-wrap justify-center gap-6 mt-10">
+    <img 
+      src="/photo1.jpg" 
+      alt="Birlikte çekildiğimiz ilk fotoğrafımız" 
+      class="w-80 h-80 object-cover rounded-2xl shadow-xl rotate-2 -translate-y-1 
+             hover:scale-150 hover:rotate-3 transition duration-300" 
+             (click)="openImage('/photo1.jpg')" 
+    />
+    <img 
+      src="/photo2.jpg" 
+      alt="Unutulmaz tatil anımız" 
+      class="w-80 h-80 object-cover rounded-2xl shadow-xl -rotate-3 translate-y-2 
+             hover:scale-150 hover:-rotate-2 transition duration-300" 
+             (click)="openImage('/photo2.jpg')" 
+    />
+    <img 
+      src="/photo3.jpg" 
+      alt="Gülüştüğümüz anlardan biri" 
+      class="w-80 h-80 object-cover rounded-2xl shadow-xl rotate-1 -translate-y-3 
+             hover:scale-150 hover:rotate-1 transition duration-300" 
+             (click)="openImage('/photo3.jpg')" 
+    />
+  </div>
+</section>
+
+<!-- ANKET BÖLÜMÜ -->
+ <section id="survey"></section>
+ <app-poll></app-poll>
+ 
