@@ -30,26 +30,121 @@
     <img 
       src="/photo1.jpg" 
       alt="Birlikte çekildiğimiz ilk fotoğrafımız" 
-      class="w-80 h-80 object-cover rounded-2xl shadow-xl rotate-2 -translate-y-1 
-             hover:scale-150 hover:rotate-3 transition duration-300" 
-             (click)="openImage('/photo1.jpg')" 
+      class="w-80 h-80 object-cover rounded-2xl transition duration-300" 
+             (click)="toggleTransform(0)" 
+             [ngClass]="{
+    '-translate-y-2 rotate-1 scale-150': isTransformed[0],
+    'rotate-2 scale-100': !isTransformed[0]
+  }"
     />
-    <p class="italic text-lg justify-center max-w-prose text-left text-white ">Alaçatı 2025 Zeynep Bastık konseri öncesi</p>
+    <p class="italic text-lg justify-center max-w-prose text-center text-white ">Alaçatı 2025 Zeynep Bastık konseri öncesi</p>
     <img 
       src="/photo2.jpg" 
       alt="Unutulmaz tatil anımız" 
-      class="w-80 h-80 object-cover rounded-2xl shadow-xl -rotate-3 translate-y-2 
-             hover:scale-150 hover:-rotate-2 transition duration-300" 
-             (click)="openImage('/photo2.jpg')" 
+      class="w-80 h-80 object-cover rounded-2xl shadow-xl transition duration-300" 
+             (click)="toggleTransform(1)" 
+             [ngClass]="{
+    '-translate-y-2 -rotate-1 scale-150': isTransformed[1],
+    '-rotate-3 scale-100': !isTransformed[1]
+  }"
     />
-    <p class="italic text-lg justify-center max-w-prose text-left text-white ">Alaçatı 2025 ot festivali enginar temalı</p>
+    <p class="italic text-lg justify-center max-w-prose text-center text-white ">Alaçatı 2025 ot festivali enginar temalı</p>
     <img 
       src="/photo3.jpg" 
       alt="Gülüştüğümüz anlardan biri" 
-      class="w-80 h-80 object-cover rounded-2xl shadow-xl rotate-1 -translate-y-3 
-             hover:scale-150 hover:rotate-1 transition duration-300" 
-             (click)="openImage('/photo3.jpg')" 
+      class="w-80 h-80 object-cover rounded-2xl shadow-xl transition duration-300" 
+             (click)="toggleTransform(2)" 
+             [ngClass]="{
+    '-translate-y-3 -rotate-1 scale-150': isTransformed[2],
+    '-rotate-3 scale-100': !isTransformed[2]
+  }"
+    /><p class="italic text-lg justify-center max-w-prose text-center text-white ">Foça 2025 3 ay aradan sonra tekrar buluşup Foça'ya kaçmıştık.</p>
+    <img 
+      src="/photo4.jpg" 
+      alt="Birlikte çekildiğimiz ilk fotoğrafımız" 
+      class="w-80 h-80 object-cover rounded-2xl transition duration-300" 
+             (click)="toggleTransform(3)" 
+             [ngClass]="{
+    '-translate-y-2 -rotate-3 scale-150': isTransformed[3],
+    '-rotate-2 scale-100': !isTransformed[3]
+  }"
     />
+    <p class="italic text-lg justify-center max-w-prose text-center text-white ">Wroclaw 2024 Wroclaw'da katedral tutu hava kapalı gösteriyordu ama biz yine de risk alıp çıkmıştık.</p>
+    <img 
+      src="/photo5.jpg" 
+      alt="Unutulmaz tatil anımız" 
+      class="w-80 h-80 object-cover rounded-2xl shadow-xl transition duration-300" 
+             (click)="toggleTransform(4)" 
+             [ngClass]="{
+    '-translate-y-2 -rotate-1 scale-150': isTransformed[4],
+    '-rotate-3 scale-100': !isTransformed[4]
+  }"
+    />
+    <p class="italic text-lg justify-center max-w-prose text-center text-white ">Oslo 2025 Oslo çarşıda bir yandan gezip bir yandan da Stanley bulmaya çalışıyorduk.</p>
+    <img 
+      src="/photo6.jpg" 
+      alt="Gülüştüğümüz anlardan biri" 
+      class="w-80 h-80 object-cover rounded-2xl shadow-xl transition duration-300" 
+             (click)="toggleTransform(5)" 
+             [ngClass]="{
+    '-translate-y-3 -rotate-1 scale-150': isTransformed[5],
+    '-rotate-3 scale-100': !isTransformed[5]
+  }"
+    /><p class="italic text-lg justify-center max-w-prose text-center text-white ">İzmir 2024 Anneler ve Esra ile bir pazar etkinliği inciraltında balık ekmek yiyip, top oynayıp sonrasında bisiklet turu yapmıştık <3</p>
+    <img 
+      src="/photo7.jpg" 
+      alt="Birlikte çekildiğimiz ilk fotoğrafımız" 
+      class="w-80 h-80 object-cover rounded-2xl transition duration-300" 
+             (click)="toggleTransform(6)" 
+             [ngClass]="{
+    '-translate-y-2 -rotate-1 scale-150': isTransformed[6],
+    '-rotate-2 scale-100': !isTransformed[6]
+  }"
+    />
+    <p class="italic text-lg justify-center max-w-prose text-center text-white ">Krakow 2024 Warşova gezisi öncesi günübirlik bile olsa Krakow'a gidip gezmiştik. Not sen Wrowclaw'daki noel ışıklarını daha çok beğenmiştin ^^</p>
+    <img 
+      src="/photo8.jpg" 
+      alt="Unutulmaz tatil anımız" 
+     class="w-80 h-80 object-cover rounded-2xl shadow-xl transition duration-300" 
+             (click)="toggleTransform(7)" 
+             [ngClass]="{
+    '-translate-y-2 -rotate-1 scale-150': isTransformed[7],
+    '-rotate-3 scale-100': !isTransformed[7]
+  }"
+    />
+    <p class="italic text-lg justify-center max-w-prose text-center text-white ">Balıkesir 2025 Nişanımızdan en sevdiğim kare Esin çekmişti sanırım. Çok heyecanlıydım ^^</p>
+    <img 
+      src="/photo9.jpg" 
+      alt="Gülüştüğümüz anlardan biri" 
+      class="w-80 h-80 object-cover rounded-2xl shadow-xl transition duration-300" 
+             (click)="toggleTransform(8)" 
+             [ngClass]="{
+    '-translate-y-3 -rotate-1 scale-150': isTransformed[8],
+    '-rotate-3 scale-100': !isTransformed[8]
+  }"
+    /><p class="italic text-lg justify-center max-w-prose text-center text-white ">Çeşme 2025 Balıklı köşk önünde fotoğraf çekilirken annemin dik duru otlar demesine çok gülmüştük :D</p>
+    <img 
+      src="/photo10.jpg" 
+      alt="Birlikte çekildiğimiz ilk fotoğrafımız" 
+      class="w-80 h-80 object-cover rounded-2xl transition duration-300" 
+             (click)="toggleTransform(9)" 
+             [ngClass]="{
+    '-translate-y-2 -rotate-1 scale-150': isTransformed[9],
+    '-rotate-2 scale-100': !isTransformed[9]
+  }"
+    />
+    <p class="italic text-lg justify-center max-w-prose text-center text-white ">Sen omuzunu açmıştın ben de dekolte olsun diye sana ayak uydurmuştum yine sevdiğim samimi pozlardan biri :)</p>
+    <img 
+      src="/photo11.jpg" 
+      alt="Unutulmaz tatil anımız" 
+      class="w-80 h-80 object-cover rounded-2xl shadow-xl transition duration-300" 
+             (click)="toggleTransform(10)" 
+             [ngClass]="{
+    '-translate-y-2 -rotate-1 scale-150': isTransformed[10],
+    '-rotate-3 scale-100': !isTransformed[10]
+  }"
+    />
+    
   </div>
 </section>
 

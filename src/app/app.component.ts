@@ -3,30 +3,23 @@ import { Howl, Howler } from 'howler';
 import confetti from 'canvas-confetti';
 import { HeaderComponent } from './header/header.component';
 import { PollComponent } from './poll/poll.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [HeaderComponent, PollComponent],
+  imports: [HeaderComponent, PollComponent,CommonModule],
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   title = 'hikayemiz';
-  isImageOpen = false;
-  openedImageUrl = '';
   isPlaying = false;
   sound: Howl;
+  isTransformed:boolean[] = [false,false,false,false,false,false,false,false,false,false,false];
   
-
-  // Modal'ı açma fonksiyonu
-  openImage(imageUrl: string) {
-    this.openedImageUrl = imageUrl;
-    this.isImageOpen = true;
-  }
-
-  closeImage() {
-    this.isImageOpen = false;
-  }
+  toggleTransform(index: number) {
+  this.isTransformed[index] = !this.isTransformed[index];
+}
   
   ngOnInit() {
     this.launchConfetti();
