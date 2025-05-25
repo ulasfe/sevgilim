@@ -1,0 +1,30 @@
+<div class="menu" *ngIf="!gameStarted && !gameEnded && !playerSelected">
+  <h2>Aşk Koşusu 💖</h2>
+  <p>Oyuncu Seç</p>
+  <button (click)="selectPlayer('Büşra')">Büşra</button>
+  <button (click)="selectPlayer('Ulaş')">Ulaş</button>
+</div>
+
+<div class="menu" *ngIf="playerSelected && !gameStarted && !gameEnded">
+  <h2>Aşk Koşusu 💖</h2>
+  <p>Seçilen Oyuncu: {{ selectedPlayer }}</p>
+  <p>Zorluk Seç</p>
+  <button (click)="startGame('easy')">Kolay</button>
+  <button (click)="startGame('normal')">Normal</button>
+  <button (click)="startGame('hard')">Zor</button>
+</div>
+
+<canvas
+  #canvas
+  *ngIf="gameStarted"
+  width="800"
+  height="300"
+  class="game-canvas"
+  (click)="jump()"
+></canvas>
+
+<div class="end" *ngIf="gameEnded">
+  <h2>Oyun Bitti 💘</h2>
+  <p>Senin için  {{ distance | number: '1.0-0' }} metre koştum 💘</p>
+  <button (click)="restartGame()">Tekrar Oyna</button>
+</div>
