@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Cloud } from './cloud';
 
 @Component({
   selector: 'app-game',
@@ -15,6 +16,9 @@ export class GameComponent implements AfterViewInit {
   obstacles: { x: number; y: number; width: number; height: number; image: HTMLImageElement }[] = [];
   obstacleSpawnTimer = 0;
   obstacleImages: HTMLImageElement[] = [];
+
+  clouds: Cloud[] = [];
+  cloudImage = new Image();
 
   gameStarted = false;
   gameEnded = false;
@@ -56,8 +60,13 @@ export class GameComponent implements AfterViewInit {
 }
 
   ngAfterViewInit() {
+  this.cloudImage.src = '/cloud.png'; // Bulut resmini buraya koy
   this.loadPlayerImages();
   this.loadObstacleImages();
+  this.cloudImage.onload = ()=>{
+    this.initClouds();
+    this.gameLoop();
+  };
   const canvas = this.canvasRef.nativeElement;
 
   canvas.addEventListener('touchstart', (e) => {
@@ -154,6 +163,18 @@ export class GameComponent implements AfterViewInit {
   });
 }
 
+initClouds() {
+  this.clouds = [];
+  for (let i = 0; i < 5; i++) {  // 5 tane bulut
+    this.clouds.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * (window.innerHeight * 0.3),  // üst kısım
+      width: 100 + Math.random() * 100,
+      height: 50 + Math.random() * 50,
+      speed: 0.3 + Math.random() * 0.7  // yavaş hızlarda
+    });
+  }
+}
   gameLoop() {
   this.animationFrameId = requestAnimationFrame(() => this.gameLoop());
 
@@ -176,6 +197,16 @@ export class GameComponent implements AfterViewInit {
       this.velocityY = 0;
     }
   }
+
+  this.clouds.forEach(cloud => {
+    cloud.x -= cloud.speed;
+    if (cloud.x + cloud.width < 0) {
+      cloud.x = canvas.width;
+      cloud.y = Math.random() * (canvas.height * 0.3);
+    }
+    if(this.ctx)
+    this.ctx.drawImage(this.cloudImage, cloud.x, cloud.y, cloud.width, cloud.height);
+  });
 
   // Karakter çiz
   const playerImage = this.selectedPlayer ? this.playerImages[this.selectedPlayer] : null;
