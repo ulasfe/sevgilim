@@ -14,6 +14,7 @@ import { GameComponent } from './components/game/game.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  isLoading = true;
   title = 'hikayemiz';
   isPlaying = false;
   showGame = false;
@@ -42,6 +43,10 @@ export class AppComponent implements OnInit {
   
   ngOnInit() {
     this.launchConfetti();
+     // Sayfa tamamen yüklendiğinde loading'i kapatmak için basit bir timeout ya da gerçek bir event
+    window.addEventListener('load', () => {
+      this.isLoading = false;
+    });
   }
 
   constructor() {
