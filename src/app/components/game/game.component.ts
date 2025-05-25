@@ -1,6 +1,8 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Cloud } from './cloud';
+import { FastClick } from 'fastclick';
+
 
 @Component({
   selector: 'app-game',
@@ -9,7 +11,11 @@ import { Cloud } from './cloud';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
-export class GameComponent implements AfterViewInit {
+export class GameComponent implements OnInit, AfterViewInit {
+  ngOnInit() {
+    FastClick.attach(document.body);
+  };
+
  @ViewChild('canvas', { static: false }) canvasRef!: ElementRef<HTMLCanvasElement>;
   ctx: CanvasRenderingContext2D | null = null;
 
