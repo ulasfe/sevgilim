@@ -1,50 +1,56 @@
+/* Sayfa yüklenirken görünen loader alanı */
 .loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.9); /* %90 beyaz, yani %10 şeffaf */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #fff;
+  z-index: 9999;
 }
 
+/* Kalp şekli */
 .heart {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 90px;
+  background-color: red;
   position: relative;
-  transform-origin: center;
+  transform: rotate(-45deg);
   animation: spin 2s linear infinite;
 }
 
-/* Kalp şekli için */
+/* Kalbin üst sağ yuvarlağı */
 .heart::before,
 .heart::after {
   content: "";
   position: absolute;
-  width: 30px;
-  height: 48px;
-  background: red;
-  border-radius: 30px 30px 0 0;
-  top: 0;
-  left: 10px;
+  width: 100px;
+  height: 90px;
+  background-color: red;
+  border-radius: 50%;
 }
 
+/* Sol yuvarlak */
 .heart::before {
+  top: -50px;
   left: 0;
-  transform: rotate(-45deg);
-  transform-origin: 20% 100%;
 }
 
+/* Sağ yuvarlak */
 .heart::after {
-  left: 20px;
-  transform: rotate(45deg);
-  transform-origin: 80% 100%;
+  left: 50px;
+  top: 0;
 }
 
 /* Döndürme animasyonu */
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(-45deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(315deg);
   }
 }
