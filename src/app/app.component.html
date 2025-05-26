@@ -5,6 +5,12 @@
 </button>
 <app-header></app-header>
 
+<div *ngIf="isLoading" class="loader-overlay">
+  <div class="heart"></div>
+</div>
+
+<router-outlet *ngIf="!isLoading"></router-outlet>
+
 <!-- HOŞGELDİN BÖLÜMÜ -->
 <section id="home" class="flex flex-wrap justify-center gap-6 mt-10 bg-white/5 backdrop-blur-md p-4 rounded-2xl shadow-lg">
   <h1 class="italic text-5xl font-extrabold text-white mb-6">Hikayemiz</h1>
