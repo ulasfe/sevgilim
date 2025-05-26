@@ -308,7 +308,7 @@ onObstaclePassed() {
   if (this.obstacleCount >= 20 && this.selectedPlayer == "Büşra") {
     this.gameWon = true;
     this.stopGameWithWinMessage();
-  }else if(this.obstacleCount >= 10 && this.selectedPlayer != "Büşra"){
+  }else if(this.obstacleCount >= 20 && this.selectedPlayer != "Büşra"){
     this.wonMessage = "Sen avucunu yala Ulaş 💩";
     this.stopGameWithWinMessage();
   }
@@ -333,6 +333,7 @@ stopGameWithWinMessage() {
 
   resetObstaclesPassed() {
   this.obstacles.forEach(obstacle => obstacle.passed = false);
+  this.obstacleCount = 0;
 }
 
   restartGame() {
