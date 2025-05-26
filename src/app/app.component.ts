@@ -43,9 +43,11 @@ export class AppComponent implements OnInit {
   }
   
   ngOnInit() {
+    document.body.style.overflow = 'hidden'; // scroll'u kapat
      // Sayfa tamamen yüklendiğinde loading'i kapatmak için basit bir timeout ya da gerçek bir event
     window.addEventListener('load', () => {
-      //this.isLoading = false;
+      this.isLoading = false;
+      document.body.style.overflow = 'auto'; // scroll'u aç
     });
     this.launchConfetti();
     
