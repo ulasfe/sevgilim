@@ -19,9 +19,12 @@ export class GameComponent implements OnInit, AfterViewInit {
  @ViewChild('canvas', { static: false }) canvasRef!: ElementRef<HTMLCanvasElement>;
   ctx: CanvasRenderingContext2D | null = null;
 
-  obstacles: { x: number; y: number; width: number; height: number; image: HTMLImageElement }[] = [];
+  obstacles: { x: number; y: number; width: number; height: number; image: HTMLImageElement, passed: boolean }[] = [];
   obstacleSpawnTimer = 0;
   obstacleImages: HTMLImageElement[] = [];
+
+  obstacleCount = 0;
+  gameWon = false;
 
   clouds: Cloud[] = [];
   cloudImage = new Image();
@@ -165,7 +168,8 @@ export class GameComponent implements OnInit, AfterViewInit {
     y: 250 - height,
     width: 50,
     height: height,
-    image: selectedImage
+    image: selectedImage,
+    passed: false
   });
 }
 
@@ -233,6 +237,12 @@ this.obstacles.forEach((obs, index) => {
     }
   }
 
+  // Engel oyuncuyu geçtiyse sayacı artır
+    if (this.playerX > obs.x + obs.width && !obs.passed) {
+      obs.passed = true;
+      this.onObstaclePassed();
+    }
+
   if (obs.x + obs.width < 0) {
     this.obstacles.splice(index, 1);
   }
@@ -267,12 +277,31 @@ this.obstacles.forEach((obs, index) => {
   }
 
   checkCollision(obstacle: { x: number; y: number; width: number; height: number }): boolean {
-  return (
-    this.playerX < obstacle.x + obstacle.width &&
-    this.playerX + this.playerWidth > obstacle.x &&
-    this.playerY < obstacle.y + obstacle.height &&
-    this.playerY + this.playerHeight > obstacle.y
+     const toleranceX = obstacle.width * 0.2;
+  const toleranceY = obstacle.height * 0.2;
+    return (
+    this.playerX < obstacle.x + obstacle.width - toleranceX &&
+    this.playerX + this.playerWidth > obstacle.x + toleranceX &&
+    this.playerY < obstacle.y + obstacle.height - toleranceY &&
+    this.playerY + this.playerHeight > obstacle.y + toleranceY
   );
+}
+
+// Engel geçtiğinde veya yok edildiğinde çağrılır
+onObstaclePassed() {
+  this.obstacleCount++;
+
+  if (this.obstacleCount >= 100 && this.selectedPlayer == "Büşra") {
+    this.gameWon = true;
+    this.stopGameWithWinMessage();
+  }
+}
+
+stopGameWithWinMessage() {
+  // Oyunu durdur, kazandınız mesajı göster
+  alert('Sevgilim 100 engel geçtin baya sevgin sen bu işi 😝');
+  // veya başka bir UI elemanı ile gösterebilirsin
+  this.endGame();
 }
 
   endGame() {
