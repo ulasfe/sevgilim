@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
   showGame = false;
   sound: Howl;
   isTransformed:boolean[] = [false,false,false,false,false,false,false,false,false,false,false];
+  countdown = 20;
+  countdownInterval: any;
   
   toggleTransform(index: number) {
   this.isTransformed[index] = !this.isTransformed[index];
@@ -46,11 +48,32 @@ export class AppComponent implements OnInit {
     document.body.style.overflow = 'hidden'; // scroll'u kapat
      // Sayfa tamamen yüklendiğinde loading'i kapatmak için basit bir timeout ya da gerçek bir event
     window.addEventListener('load', () => {
-      this.isLoading = false;
-      document.body.style.overflow = 'auto'; // scroll'u aç
+      this.stopLoading();
     });
+
+    // Geri sayımı başlat
+    this.countdownInterval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown <= 0) {
+        clearInterval(this.countdownInterval);
+      }
+    }, 1000);
+
+    setTimeout(() => {
+      if (this.isLoading) {
+        console.warn('20 saniye doldu, loader kapatıldı.');
+        this.stopLoading();
+      }
+    }, 20000);
+
     this.launchConfetti();
     
+  }
+
+  stopLoading() {
+    this.isLoading = false;
+    document.body.style.overflow = 'auto'; // scroll'u aç
+    clearInterval(this.countdownInterval);
   }
 
   constructor() {

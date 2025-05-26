@@ -86,41 +86,9 @@
     transform: scale(1.1);
   }
 }
-
-.balloon {
-  width: 30px;
-  height: 40px;
-  background-color: red;
-  border-radius: 50% 50% 50% 50%;
-  position: absolute;
-  bottom: -50px;
-  animation: floatUp 4s ease-in infinite;
-  opacity: 0.7;
+.countdown-text {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
 }
-
-.balloon::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -10px;
-  width: 2px;
-  height: 15px;
-  background: #333;
-}
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-110vh) scale(1.1);
-    opacity: 0;
-  }
-}
-
-/* Farklı renkler ve konumlar için varyasyon */
-.balloon:nth-child(1) { left: 20%; background-color: #ff6666; animation-delay: 0s; }
-.balloon:nth-child(2) { left: 40%; background-color: #66ccff; animation-delay: 0.5s; }
-.balloon:nth-child(3) { left: 60%; background-color: #99ff99; animation-delay: 1s; }
-.balloon:nth-child(4) { left: 80%; background-color: #ffcc66; animation-delay: 1.5s; }
