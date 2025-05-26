@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   showGame = false;
   sound: Howl;
   isTransformed:boolean[] = [false,false,false,false,false,false,false,false,false,false,false];
-  countdown = 20;
+  countdown = 40;
   countdownInterval: any;
   
   toggleTransform(index: number) {
@@ -61,10 +61,10 @@ export class AppComponent implements OnInit {
 
     setTimeout(() => {
       if (this.isLoading) {
-        console.warn('20 saniye doldu, loader kapatıldı.');
+        console.warn('40 saniye doldu, loader kapatıldı.');
         this.stopLoading();
       }
-    }, 20000);
+    }, 40000);
 
     this.launchConfetti();
     
