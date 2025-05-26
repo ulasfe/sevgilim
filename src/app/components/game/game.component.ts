@@ -122,18 +122,18 @@ export class GameComponent implements OnInit, AfterViewInit {
 
     switch (difficulty) {
       case 'easy':        
-        this.gravity = 0.5;
-        this.difficultySpeed = 3;
+        this.gravity = 0.4;
+        this.difficultySpeed = 1;
         this.wonMessage = "Sevgilim onca engeli benim için mi geçtin ?😝";
         break;
       case 'normal':
-        this.gravity = 0.9;
-        this.difficultySpeed = 5;
+        this.gravity = 0.5;
+        this.difficultySpeed = 3;
         this.wonMessage = "Ooo seviyeyi arttırdık bakıyorum 😜";
         break;
       case 'hard':
-        this.gravity = 1.2;
-        this.difficultySpeed = 8;
+        this.gravity = 0.7;
+        this.difficultySpeed = 5;
         this.wonMessage = "Hızlı ve sexy sevgilim 😎";
         break;
     }
