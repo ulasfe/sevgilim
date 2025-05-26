@@ -261,7 +261,7 @@ this.obstacles.forEach((obs, index) => {
 
   // Yeni engel üret
   this.obstacleSpawnTimer++;
-  if (this.obstacleSpawnTimer > 90) {
+  if (this.obstacleSpawnTimer > (this.level === 'easy' ? 150 : 90)) {
     this.spawnObstacle();
     this.obstacleSpawnTimer = 0;
   }
@@ -269,7 +269,7 @@ this.obstacles.forEach((obs, index) => {
   // Mesafeyi arttır
   this.distance += this.difficultySpeed * 0.1;
 
-  if (this.distance >= 1000) {
+  if (this.distance >= 1500) {
     this.endGame();
   }
 }
@@ -329,5 +329,6 @@ stopGameWithWinMessage() {
     this.selectedPlayer = null;
     this.distance = 0;
     this.gameEnded = false;
+    this.wonMessage= "";
   }
 }
