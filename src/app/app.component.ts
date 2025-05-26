@@ -5,12 +5,13 @@ import { HeaderComponent } from './header/header.component';
 import { PollComponent } from './poll/poll.component';
 import { CommonModule } from '@angular/common';
 import { GameComponent } from './components/game/game.component';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  imports: [HeaderComponent, PollComponent,CommonModule,GameComponent],
+  imports: [HeaderComponent, PollComponent,CommonModule,GameComponent,RouterModule],
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
@@ -42,11 +43,12 @@ export class AppComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.launchConfetti();
      // Sayfa tamamen yüklendiğinde loading'i kapatmak için basit bir timeout ya da gerçek bir event
     window.addEventListener('load', () => {
       this.isLoading = false;
     });
+    this.launchConfetti();
+    
   }
 
   constructor() {
