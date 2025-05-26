@@ -122,17 +122,17 @@ export class GameComponent implements OnInit, AfterViewInit {
 
     switch (difficulty) {
       case 'easy':        
-        this.gravity = 0.4;
+        this.gravity = 0.7;
         this.difficultySpeed = 1;
         this.wonMessage = "Sevgilim onca engeli benim için mi geçtin ?😝";
         break;
       case 'normal':
-        this.gravity = 0.5;
+        this.gravity = 0.8;
         this.difficultySpeed = 3;
         this.wonMessage = "Ooo seviyeyi arttırdık bakıyorum 😜";
         break;
       case 'hard':
-        this.gravity = 0.7;
+        this.gravity = 0.9;
         this.difficultySpeed = 5;
         this.wonMessage = "Hızlı ve sexy sevgilim 😎";
         break;
@@ -207,11 +207,19 @@ initClouds() {
     this.velocityY += this.gravity;
     this.playerY += this.velocityY;
 
-    if (this.playerY > 220) {
-      this.playerY = 220;
-      this.isJumping = false;
-      this.velocityY = 0;
-    }
+    // Düşüş hızını sınırla, havada yavaş süzülme için
+  const maxFallSpeed = this.level == "easy" ? 1 : this.level == "normal" ?  3 : 5;  // Bu değeri istersen 3-7 arası değiştirebilirsin
+  if (this.velocityY > maxFallSpeed) {
+    this.velocityY = maxFallSpeed;
+  }
+
+  this.playerY += this.velocityY;
+
+  if (this.playerY > 220) {
+    this.playerY = 220;
+    this.isJumping = false;
+    this.velocityY = 0;
+  }
   }
 
   this.clouds.forEach(cloud => {
@@ -261,7 +269,7 @@ this.obstacles.forEach((obs, index) => {
 
   // Yeni engel üret
   this.obstacleSpawnTimer++;
-  if (this.obstacleSpawnTimer > (this.level === 'easy' ? 150 : 90)) {
+  if (this.obstacleSpawnTimer > (this.level === 'easy' ? 180 : this.level === "normal" ? 100 : 90)) {
     this.spawnObstacle();
     this.obstacleSpawnTimer = 0;
   }
@@ -300,9 +308,9 @@ onObstaclePassed() {
   if (this.obstacleCount >= 20 && this.selectedPlayer == "Büşra") {
     this.gameWon = true;
     this.stopGameWithWinMessage();
-  }else if(this.obstacleCount >= 20 && this.selectedPlayer == "Büşra"){
-    this.stopGameWithWinMessage();
+  }else if(this.obstacleCount >= 10 && this.selectedPlayer != "Büşra"){
     this.wonMessage = "Sen avucunu yala Ulaş 💩";
+    this.stopGameWithWinMessage();
   }
 }
 
