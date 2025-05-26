@@ -22,6 +22,8 @@ export class GameComponent implements OnInit, AfterViewInit {
   obstacles: { x: number; y: number; width: number; height: number; image: HTMLImageElement, passed: boolean }[] = [];
   obstacleSpawnTimer = 0;
   obstacleImages: HTMLImageElement[] = [];
+  level ="easy";
+  wonMessage = "";
 
   obstacleCount = 0;
   gameWon = false;
@@ -116,19 +118,23 @@ export class GameComponent implements OnInit, AfterViewInit {
     this.obstacleSpawnTimer = 0;
 
     document.body.style.overflow = 'hidden';
+    this.level = difficulty;
 
     switch (difficulty) {
-      case 'easy':
+      case 'easy':        
         this.gravity = 0.5;
         this.difficultySpeed = 3;
+        this.wonMessage = "Sevgilim once engeli benim için mi geçtin ?😝";
         break;
       case 'normal':
         this.gravity = 0.9;
         this.difficultySpeed = 5;
+        this.wonMessage = "Ooo seviyeyi arttırdık bakıyorum 😜";
         break;
       case 'hard':
         this.gravity = 1.2;
         this.difficultySpeed = 8;
+        this.wonMessage = "Hızlı ve sexy sevgilim 😎";
         break;
     }
 
@@ -291,15 +297,18 @@ this.obstacles.forEach((obs, index) => {
 onObstaclePassed() {
   this.obstacleCount++;
 
-  if (this.obstacleCount >= 100 && this.selectedPlayer == "Büşra") {
+  if (this.obstacleCount >= 20 && this.selectedPlayer == "Büşra") {
     this.gameWon = true;
     this.stopGameWithWinMessage();
+  }else if(this.obstacleCount >= 20 && this.selectedPlayer == "Büşra"){
+    this.stopGameWithWinMessage();
+    this.wonMessage = "Sen avucunu yala Ulaş 💩";
   }
 }
 
 stopGameWithWinMessage() {
   // Oyunu durdur, kazandınız mesajı göster
-  alert('Sevgilim 100 engel geçtin baya sevgin sen bu işi 😝');
+  alert(this.wonMessage);
   // veya başka bir UI elemanı ile gösterebilirsin
   this.endGame();
 }
