@@ -331,6 +331,9 @@ stopGameWithWinMessage() {
     }
   }
 
+  resetObstaclesPassed() {
+  this.obstacles.forEach(obstacle => obstacle.passed = false);
+}
 
   restartGame() {
     this.playerSelected = false;
@@ -338,5 +341,6 @@ stopGameWithWinMessage() {
     this.distance = 0;
     this.gameEnded = false;
     this.wonMessage= "";
+    this.resetObstaclesPassed();
   }
 }
