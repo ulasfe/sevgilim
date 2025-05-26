@@ -124,7 +124,7 @@ export class GameComponent implements OnInit, AfterViewInit {
       case 'easy':        
         this.gravity = 0.5;
         this.difficultySpeed = 3;
-        this.wonMessage = "Sevgilim once engeli benim için mi geçtin ?😝";
+        this.wonMessage = "Sevgilim onca engeli benim için mi geçtin ?😝";
         break;
       case 'normal':
         this.gravity = 0.9;
