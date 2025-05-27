@@ -12,10 +12,11 @@
   z-index: 9999;
 }
 
-/* Kalp şekli */
+
+/* Küçük Kalp Şekli */
 .heart {
-  width: 100px;
-  height: 90px;
+  width: 50px;
+  height: 45px;
   background-color: red;
   position: relative;
   transform: rotate(-45deg);
@@ -27,21 +28,21 @@
 .heart::after {
   content: "";
   position: absolute;
-  width: 100px;
-  height: 90px;
+  width: 50px;
+  height: 45px;
   background-color: red;
   border-radius: 50%;
 }
 
 /* Sol yuvarlak */
 .heart::before {
-  top: -50px;
+  top: -25px;
   left: 0;
 }
 
 /* Sağ yuvarlak */
 .heart::after {
-  left: 50px;
+  left: 25px;
   top: 0;
 }
 
