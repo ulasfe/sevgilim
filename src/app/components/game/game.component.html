@@ -25,6 +25,6 @@
 
 <div class="end" *ngIf="gameEnded">
   <h2>Oyun Bitti 💘</h2>
-  <p>Senin için  {{ distance | number: '1.0-0' }} metre koştum 💘</p>
+  <p> {{selectedPlayer}}: Senin için  {{ distance | number: '1.0-0' }} metre koştum 🥵</p>
   <button (click)="restartGame()">Tekrar Oyna</button>
 </div>
