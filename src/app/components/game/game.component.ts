@@ -208,7 +208,7 @@ initClouds() {
     this.playerY += this.velocityY;
 
     // Düşüş hızını sınırla, havada yavaş süzülme için
-  const maxFallSpeed = this.level == "easy" ? 1 : this.level == "normal" ?  3 : 5;  // Bu değeri istersen 3-7 arası değiştirebilirsin
+  const maxFallSpeed = this.level == "easy" ? 0.8 : this.level == "normal" ?  3 : 5;  // Bu değeri istersen 3-7 arası değiştirebilirsin
   if (this.velocityY > maxFallSpeed) {
     this.velocityY = maxFallSpeed;
   }
@@ -269,7 +269,7 @@ this.obstacles.forEach((obs, index) => {
 
   // Yeni engel üret
   this.obstacleSpawnTimer++;
-  if (this.obstacleSpawnTimer > (this.level === 'easy' ? 180 : this.level === "normal" ? 100 : 90)) {
+  if (this.obstacleSpawnTimer > (this.level === 'easy' ? 220 : this.level === "normal" ? 100 : 90)) {
     this.spawnObstacle();
     this.obstacleSpawnTimer = 0;
   }
@@ -309,6 +309,7 @@ onObstaclePassed() {
     this.gameWon = true;
     this.stopGameWithWinMessage();
   }else if(this.obstacleCount >= 20 && this.selectedPlayer != "Büşra"){
+    this.gameWon = true;
     this.wonMessage = "Sen avucunu yala Ulaş 💩";
     this.stopGameWithWinMessage();
   }
