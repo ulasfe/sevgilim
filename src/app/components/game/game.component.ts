@@ -49,7 +49,6 @@ export class GameComponent implements OnInit, AfterViewInit {
   gravity = 1.2;
   jumpStrength = -15;
   isJumping = false;
-  obsLimit = 10;
 
   animationFrameId: number | null = null;
 
@@ -125,20 +124,17 @@ export class GameComponent implements OnInit, AfterViewInit {
       case 'easy':        
         this.gravity = 0.7;
         this.difficultySpeed = 1;
-        this.obsLimit = 10;
-        this.wonMessage = `Sevgilim "${this.obsLimit}" engeli benim için mi geçtin😍`;
+        this.wonMessage = "Sevgilim onca engeli benim için mi geçtin ?😝";
         break;
       case 'normal':
         this.gravity = 0.8;
         this.difficultySpeed = 3;
-        this.obsLimit = 20;
         this.wonMessage = "Ooo seviyeyi arttırdık bakıyorum 😜";
         break;
       case 'hard':
         this.gravity = 0.9;
         this.difficultySpeed = 5;
-        this.obsLimit = 30;
-        this.wonMessage = `Hızlı ve sexy sevgilim "${this.obsLimit}" engel aştın 😎`;
+        this.wonMessage = "Hızlı ve sexy sevgilim 😎";
         break;
     }
 
@@ -271,15 +267,12 @@ this.obstacles.forEach((obs, index) => {
 });
 
 
- // Yeni engel üret
-this.obstacleSpawnTimer++;
-
-const spawnInterval = this.level === 'easy' ? 220 : this.level === "normal" ? 100 : 90;
-
-if (this.obstacleSpawnTimer > spawnInterval && this.obstacles.length < this.obsLimit) {
-  this.spawnObstacle();
-  this.obstacleSpawnTimer = 0;
-}
+  // Yeni engel üret
+  this.obstacleSpawnTimer++;
+  if (this.obstacleSpawnTimer > (this.level === 'easy' ? 220 : this.level === "normal" ? 100 : 90)) {
+    this.spawnObstacle();
+    this.obstacleSpawnTimer = 0;
+  }
 
   // Mesafeyi arttır
   this.distance += this.difficultySpeed * 0.1;
@@ -312,10 +305,10 @@ if (this.obstacleSpawnTimer > spawnInterval && this.obstacles.length < this.obsL
 onObstaclePassed() {
   this.obstacleCount++;
 
-  if (this.obstacleCount >= this.obsLimit && this.selectedPlayer == "Büşra") {
+  if (this.obstacleCount >= 20 && this.selectedPlayer == "Büşra") {
     this.gameWon = true;
     this.stopGameWithWinMessage();
-  }else if(this.obstacleCount >= this.onsLimit && this.selectedPlayer != "Büşra"){
+  }else if(this.obstacleCount >= 20 && this.selectedPlayer != "Büşra"){
     this.gameWon = true;
     this.wonMessage = "Sen avucunu yala Ulaş 💩";
     this.stopGameWithWinMessage();
@@ -348,7 +341,6 @@ stopGameWithWinMessage() {
     this.playerSelected = false;
     this.selectedPlayer = null;
     this.distance = 0;
-    this.obstacleCount = 0;
     this.gameEnded = false;
     this.wonMessage= "";
     this.resetObstaclesPassed();
