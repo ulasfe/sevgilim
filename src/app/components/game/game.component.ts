@@ -349,6 +349,7 @@ stopGameWithWinMessage() {
     this.playerSelected = false;
     this.selectedPlayer = null;
     this.distance = 0;
+    this.obstacleCount = 0;
     this.gameEnded = false;
     this.wonMessage= "";
     this.resetObstaclesPassed();
