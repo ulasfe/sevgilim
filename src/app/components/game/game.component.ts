@@ -49,6 +49,7 @@ export class GameComponent implements OnInit, AfterViewInit {
   gravity = 1.2;
   jumpStrength = -15;
   isJumping = false;
+  obsLimit = 10;
 
   animationFrameId: number | null = null;
 
@@ -124,17 +125,20 @@ export class GameComponent implements OnInit, AfterViewInit {
       case 'easy':        
         this.gravity = 0.7;
         this.difficultySpeed = 1;
-        this.wonMessage = "Sevgilim onca engeli benim için mi geçtin ?😝";
+        this.obsLimit = 10;
+        this.wonMessage = `Sevgilim "${this.obsLimit}" engeli benim için mi geçtin😍`;
         break;
       case 'normal':
         this.gravity = 0.8;
         this.difficultySpeed = 3;
+        this.obsLimit = 20;
         this.wonMessage = "Ooo seviyeyi arttırdık bakıyorum 😜";
         break;
       case 'hard':
         this.gravity = 0.9;
         this.difficultySpeed = 5;
-        this.wonMessage = "Hızlı ve sexy sevgilim 😎";
+        this.obsLimit = 30;
+        this.wonMessage = `Hızlı ve sexy sevgilim "${this.obsLimit}" engel aştın 😎`;
         break;
     }
 
@@ -267,12 +271,16 @@ this.obstacles.forEach((obs, index) => {
 });
 
 
-  // Yeni engel üret
-  this.obstacleSpawnTimer++;
-  if (this.obstacleSpawnTimer > (this.level === 'easy' ? 220 : this.level === "normal" ? 100 : 90)) {
-    this.spawnObstacle();
-    this.obstacleSpawnTimer = 0;
-  }
+ // Yeni engel üret
+this.obstacleSpawnTimer++;
+
+const spawnInterval = this.level === 'easy' ? 220 : this.level === "normal" ? 100 : 90;
+
+if (this.obstacleSpawnTimer > spawnInterval && this.obstacleCount < this.obsLimit) {
+  this.spawnObstacle();
+  this.obstacleSpawnTimer = 0;
+  this.obstacleCount++;
+}
 
   // Mesafeyi arttır
   this.distance += this.difficultySpeed * 0.1;
