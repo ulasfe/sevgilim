@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   showGame = false;
   sound: Howl;
   isTransformed:boolean[] = [false,false,false,false,false,false,false,false,false,false,false];
-  countdown = 40;
+  countdown = 30;
   countdownInterval: any;
   
   toggleTransform(index: number) {
