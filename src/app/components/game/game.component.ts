@@ -276,10 +276,9 @@ this.obstacleSpawnTimer++;
 
 const spawnInterval = this.level === 'easy' ? 220 : this.level === "normal" ? 100 : 90;
 
-if (this.obstacleSpawnTimer > spawnInterval && this.obstacleCount < this.obsLimit) {
+if (this.obstacleSpawnTimer > spawnInterval && this.obstacles.length < this.obsLimit) {
   this.spawnObstacle();
   this.obstacleSpawnTimer = 0;
-  this.obstacleCount++;
 }
 
   // Mesafeyi arttır
@@ -313,10 +312,10 @@ if (this.obstacleSpawnTimer > spawnInterval && this.obstacleCount < this.obsLimi
 onObstaclePassed() {
   this.obstacleCount++;
 
-  if (this.obstacleCount >= 20 && this.selectedPlayer == "Büşra") {
+  if (this.obstacleCount >= this.obsLimit && this.selectedPlayer == "Büşra") {
     this.gameWon = true;
     this.stopGameWithWinMessage();
-  }else if(this.obstacleCount >= 20 && this.selectedPlayer != "Büşra"){
+  }else if(this.obstacleCount >= this.onsLimit && this.selectedPlayer != "Büşra"){
     this.gameWon = true;
     this.wonMessage = "Sen avucunu yala Ulaş 💩";
     this.stopGameWithWinMessage();
