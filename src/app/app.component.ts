@@ -63,7 +63,6 @@ export class AppComponent implements OnInit {
       if (this.isLoading) {
         console.warn('30 saniye doldu, loader kapatıldı.');
         this.stopLoading();
-        this.launchConfetti();
       }
     }, 30000);
   }
@@ -72,6 +71,7 @@ export class AppComponent implements OnInit {
     this.isLoading = false;
     document.body.style.overflow = 'auto'; // scroll'u aç
     clearInterval(this.countdownInterval);
+    this.launchConfetti();
   }
 
   constructor() {
