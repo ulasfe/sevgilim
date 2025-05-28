@@ -61,13 +61,11 @@ export class AppComponent implements OnInit {
 
     setTimeout(() => {
       if (this.isLoading) {
-        console.warn('40 saniye doldu, loader kapatıldı.');
+        console.warn('30 saniye doldu, loader kapatıldı.');
         this.stopLoading();
+        this.launchConfetti();
       }
-    }, 40000);
-
-    this.launchConfetti();
-    
+    }, 30000);
   }
 
   stopLoading() {
