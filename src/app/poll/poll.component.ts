@@ -76,8 +76,8 @@ export class PollComponent {
     },
     {
       text: 'Bu siteyi nasıl buldun?',
-      options: ['Harika!', 'Çok tatlı', 'Biraz daha geliştirilebilir', 'Hiç fena değil'],
-      correctAnswer: 'Harika!',
+      options: ['O kadar değil 🤪','Harika!', 'Çok tatlı', 'Biraz daha geliştirilebilir', 'Hiç fena değil'],
+      correctAnswer: 'O kadar değil 🤪',
       answer: '',
       isCorrect: false
     }
