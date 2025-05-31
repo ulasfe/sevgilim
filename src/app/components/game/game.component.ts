@@ -305,10 +305,10 @@ this.obstacles.forEach((obs, index) => {
 onObstaclePassed() {
   this.obstacleCount++;
 
-  if (this.obstacleCount >= 20 && this.selectedPlayer == "Büşra") {
+  if (this.obstacleCount >= 10 && this.selectedPlayer == "Büşra") {
     this.gameWon = true;
     this.stopGameWithWinMessage();
-  }else if(this.obstacleCount >= 20 && this.selectedPlayer != "Büşra"){
+  }else if(this.obstacleCount >= 10 && this.selectedPlayer != "Büşra"){
     this.gameWon = true;
     this.wonMessage = "Sen avucunu yala Ulaş 💩";
     this.stopGameWithWinMessage();
